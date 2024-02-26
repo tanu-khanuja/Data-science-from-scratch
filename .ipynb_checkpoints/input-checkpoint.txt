@@ -1,0 +1,7 @@
+This is a sample input file.
+It contains some lines with text.
+ # This is 1 comment line.
+This line contains the word "pattern".
+Another line with 10 more text.
+# Another comment line.
+This is the last line.
