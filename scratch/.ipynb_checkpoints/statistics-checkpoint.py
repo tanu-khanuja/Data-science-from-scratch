@@ -1,8 +1,7 @@
 from typing import List
 from scratch.linear_algebra import sum_of_squares
-
 import math
-
+from scratch.linear_algebra import dot
 
 def mean(xs: List[float]) -> float:
     return sum(xs) / len(xs)
@@ -67,7 +66,12 @@ def interquatile_range(my_dataset: List[float]) -> float:
 
 def covariance(x: List[float], y: List[float]) -> float:
     assert len(x) == len(y), "different sizes!"
-    return dot_product(de_mean(x),de_mean(y))/(len(x)-1)
+    return dot(de_mean(x),de_mean(y))/(len(x)-1)
 
 def correlation(x: List[float], y:List[float]):
-    return covariance(x,y)/(standard_deviation(x)*standard_deviation(y))
+    std_x = standard_deviation(x)
+    std_y = standard_deviation(y)
+    if std_x > 0 and std_y > 0:
+        return covariance(x,y)/(standard_deviation(x)*standard_deviation(y))
+    else:
+        return 0

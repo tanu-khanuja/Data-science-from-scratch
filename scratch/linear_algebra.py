@@ -1,4 +1,5 @@
 from typing import List, Tuple, Callable
+import math
 Vector = List[float]  
 Matrix = List[Vector]
 
@@ -22,7 +23,7 @@ def vector_sum(list_of_vectors: List[Vector]) -> Vector:
     """sum of all corresponding elements"""
    
     #check if list_of_vectors is empty
-    assert list_of_vectors, "no vectors provided"
+    #assert list_of_vectors, "no vectors provided"
 
     #check if vectors are of same size
     l = len(list_of_vectors[0])  #length of first vector
