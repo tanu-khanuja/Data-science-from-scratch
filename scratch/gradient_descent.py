@@ -1,3 +1,7 @@
+from typing import TypeVar, List, Iterator
+T = TypeVar('T')  #allows to type generic functions
+
+
 from scratch.linear_algebra import Vector, dot
 def sum_of_squares(v: Vector) -> float:
     """Computes the sum of squared elements in v"""
