@@ -51,9 +51,7 @@ def dot(a: Vector, b: Vector) -> float:
 
 def sum_of_squares(a: Vector) -> float:
     """Returns v_1 * v_1 + ... + v_n * v_n"""
-    l = len(a)
-    sum_a = sum(math.pow(a[i],2) for i in range(l))
-    return sum_a
+    return dot(a, a)
 
 def magnitude(a: Vector):
     """Returns the magnitude (or length) of v"""

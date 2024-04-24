@@ -73,7 +73,8 @@ assert de_mean([1,2,3,4,5]) == [-2.0, -1.0, 0.0, 1.0, 2.0]
 def variance(my_dataset: List[float]) -> float:
     assert len(my_dataset) >=2 #variance requires at least two elements
     l = len(my_dataset)
-    return sum_of_squares(de_mean(my_dataset))/l-1
+    deviations = de_mean(my_dataset)
+    return sum_of_squares(deviations)/(l-1)
 
 def standard_deviation(my_dataset: List[float]) -> float:
     #SD is square root of variance
