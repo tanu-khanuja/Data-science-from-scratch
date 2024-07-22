@@ -42,11 +42,16 @@ def vector_mean(v: List[Vector]) -> Vector:
     a = vector_sum(v)
     return scalar_multiply(a, 1/len(v))
 
-def dot(a: Vector, b: Vector) -> float:
+def dot(v: Vector, w: Vector) -> float:
     """Computes v_1 * w_1 + ... + v_n * w_n"""
-    assert len(a)==len(b), "different sizes"
-    l = len(a)
-    return(sum(a[i]*b[i] for i in range(l)))
+    assert len(v) == len(w), "vectors must be same length"
+    return sum(v_i * w_i for v_i, w_i in zip(v, w))
+
+# def dot(a: Vector, b: Vector) -> float:
+#     """Computes v_1 * w_1 + ... + v_n * w_n"""
+#     assert len(a)==len(b), "different sizes"
+#     l = len(a)
+#     return(sum(a[i]*b[i] for i in range(l)))
 
 
 def sum_of_squares(a: Vector) -> float:
