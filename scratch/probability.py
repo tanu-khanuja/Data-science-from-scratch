@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 import math
+from collections import Counter
 
 SQRT_TWO_PI = math.sqrt(2 * math.pi)
 
@@ -64,17 +65,31 @@ def binomial(p: float, n: int) -> int:
     return sum(bernoulli_trial(p) for _ in range(n)) 
 
 def binomial_histogram(p: float, n: int, num_points: int) -> None:
-    """pick binomials of n trials for every num_points and plot histogram"""
+    """
+    pick binomials of n trials for every num_points and plot histogram
+    """
+    
     data = [binomial(p,n) for _ in range(num_points)]
+    
     # list of binomial sums for num_points number of group events
     data_counts = Counter(data)
-    plt.bar([x for x in data_counts.keys()], [y/num_points for y in data_counts.values()], 0.8, color = '0.75')
-    #lets plot the line chart with bar plot
-    #we know the mean and SD for binomial distribution mu = n*p and SD = sqrt(n*p*(1-p))
+    
+    # Plot Distribution
+    plt.figure(figsize=(6,4))
+    plt.bar([x for x in data_counts.keys()], [y/num_points for y in data_counts.values()],0.8, color = '0.75')
+    
+    # Let's plot the line chart with bar plot
+    # We know the mean and SD for binomial distribution mu = n*p and SD = sqrt(n*p*(1-p))
+    
     mu = n*p
     sigma = math.sqrt(n*p*(1-p))
     x_values = range(min(data), max(data)+1)
-    y_values = [normal_PDF(i, mu, sigma) for i in x_values]
+    # print(x_values)
+    y_values = [normal_CDF(i+0.5, mu, sigma)-normal_CDF(i-0.5, mu, sigma) for i in x_values]
+    # y_values=[normal_PDF(i,mu,sigma) for i in x_values]
     plt.plot(x_values, y_values)
+    plt.xlabel('Number of Sucesses')
+    plt.ylabel('Probability Density')
+    plt.title('Distribution of Successes in 10,000 Binomial Experiments (100 Coin Flips Each) with Success Probability 0.75')
     plt.show()
 
